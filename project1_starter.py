@@ -33,6 +33,18 @@ def calculate_stats(character_class, level):
     """
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
+    Warrior_char = (18, 3, 100)
+    Mage_char = (4, 23, 80)
+    Rogue_char = (13, 12, 9)
+    Cleric_char = (13, 20, 80)
+    if character_class == "Warriors":
+        return Warrior_char
+    elif character_class == "Mages":
+        return Mage_char
+    elif character_class == "Rogues":
+        return Rogue_char
+    elif character_class == "Cleric":
+        return Cleric_char
     pass
 
 def save_character(character, filename):
