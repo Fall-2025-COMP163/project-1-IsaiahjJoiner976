@@ -54,6 +54,8 @@ def calculate_stats(character_class, level):
         return Rogue_char
     elif character_class == "Cleric":
         return Cleric_char
+    else:
+        return None
     pass
 
 def save_character(character, filename):
