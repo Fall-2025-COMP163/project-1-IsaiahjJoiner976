@@ -18,6 +18,13 @@ def create_character(name, character_class):
     """
     # TODO: Implement this function
     # Remember to use calculate_stats() function for stat calculation
+    char_stats = {"name": name, "class": character_class, "level": 1, "gold": 100}
+    stats = calculate_stats(character_class, 1)
+
+    char_stats["strength"] = stats[0]
+    char_stats["magic"] = stats[1]
+    char_stats["health"] = stats[2]
+    return char_stats
     pass
 
 def calculate_stats(character_class, level):
@@ -33,15 +40,15 @@ def calculate_stats(character_class, level):
     """
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
-    Warrior_char = (18, 3, 100)
-    Mage_char = (4, 23, 80)
-    Rogue_char = (13, 12, 9)
-    Cleric_char = (13, 20, 80)
-    if character_class == "Warriors":
+    Warrior_char = (20, 3, 60)
+    Mage_char = (8, 21, 20)
+    Rogue_char = (11, 12, 20)
+    Cleric_char = (11, 19, 40)
+    if character_class == "Warrior":
         return Warrior_char
-    elif character_class == "Mages":
+    elif character_class == "Mage":
         return Mage_char
-    elif character_class == "Rogues":
+    elif character_class == "Rogue":
         return Rogue_char
     elif character_class == "Cleric":
         return Cleric_char
