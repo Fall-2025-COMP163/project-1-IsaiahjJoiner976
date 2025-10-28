@@ -74,6 +74,10 @@ def save_character(character, filename):
     """
     # TODO: Implement this function
     # Remember to handle file errors gracefully
+    with open(filename, 'w') as file:
+        for key, value in character.items():
+            file.write(f"{key}: {value}\n")
+    print(f"Character {character["name"]} saved to {filename} successfully!")
     pass
 
 def load_character(filename):
@@ -83,6 +87,9 @@ def load_character(filename):
     """
     # TODO: Implement this function
     # Remember to handle file not found errors
+    with open(filename, 'r') as file:
+        loaded_char = file.read()
+        print(loaded_char)
     pass
 
 def display_character(character):
