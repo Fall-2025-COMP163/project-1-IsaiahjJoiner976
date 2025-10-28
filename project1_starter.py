@@ -22,6 +22,7 @@ def create_character(name, character_class):
     stats = calculate_stats(character_class, 1)
     if stats is None:
         print(f"Error: Invalid character class '{character_class}'")
+        return None
     char_stats["strength"] = stats[0]
     char_stats["magic"] = stats[1]
     char_stats["health"] = stats[2]
