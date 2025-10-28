@@ -20,7 +20,8 @@ def create_character(name, character_class):
     # Remember to use calculate_stats() function for stat calculation
     char_stats = {"name": name, "class": character_class, "level": 1, "gold": 100}
     stats = calculate_stats(character_class, 1)
-
+    if stats is None:
+        print(f"Error: Invalid character class '{character_class}'")
     char_stats["strength"] = stats[0]
     char_stats["magic"] = stats[1]
     char_stats["health"] = stats[2]
