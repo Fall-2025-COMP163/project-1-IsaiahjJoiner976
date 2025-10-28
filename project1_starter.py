@@ -77,7 +77,7 @@ def save_character(character, filename):
     with open(filename, 'w') as file:
         for key, value in character.items():
             file.write(f"{key}: {value}\n")
-    print(f"Character {character["name"]} saved to {filename} successfully!")
+    return True
     pass
 
 def load_character(filename):
