@@ -135,6 +135,7 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
+    character = str(character)
     if os.path.exists(character):
         with open(character, "r") as file:
             print("=== CHARACTER SHEET ===")
