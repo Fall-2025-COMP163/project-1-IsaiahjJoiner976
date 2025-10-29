@@ -91,9 +91,29 @@ def load_character(filename):
     # TODO: Implement this function
     # Remember to handle file not found errors
     if os.path.exists(filename):
+        load_char_data = {}
         with open(filename, 'r') as file:
-            loaded_char = file.read()
-            return loaded_char
+            for line in file:
+                clean_line = line.strip()
+                if not clean_line:
+                    continue
+
+                key_part, value_str = clean_line.split(':', 1)
+
+                key_part = key_part.strip()
+                value_str = value_str.strip()
+
+                if key_part == "Character Name":
+                    key = "name"
+                else:
+                    key = key_part.lower()
+
+                if value_str.isdigit():
+                    value = int(value_str)
+                else:
+                    value = value_str
+                load_char_data[key] = value
+        return load_char_data
     else:
         print(f"File '{filename} not found.")
         return None
