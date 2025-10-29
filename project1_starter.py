@@ -90,9 +90,13 @@ def load_character(filename):
     """
     # TODO: Implement this function
     # Remember to handle file not found errors
-    with open(filename, 'r') as file:
-        loaded_char = file.read()
-        print(loaded_char)
+    if os.path.exists(filename):
+        with open(filename, 'r') as file:
+            loaded_char = file.read()
+            return loaded_char
+    else:
+        print(f"File '{filename} not found.")
+        return None
     pass
 
 def display_character(character):
