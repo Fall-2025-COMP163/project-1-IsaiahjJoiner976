@@ -135,11 +135,14 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
-    with open(character, "r") as file:
-        lines = file.readlines()
-        print("=== CHARACTER SHEET ===")
-        for line in file:
-            print(line.strip())
+    if os.path.exists(character):
+        with open(character, "r") as file:
+            lines = file.readlines()
+            print("=== CHARACTER SHEET ===")
+            for line in file:
+                print(line.strip())
+    else:
+        return None
     pass
 
 def level_up(character):
