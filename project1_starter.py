@@ -137,11 +137,12 @@ def display_character(character):
     # TODO: Implement this function
     if os.path.exists(character):
         with open(character, "r") as file:
-            lines = file.readlines()
             print("=== CHARACTER SHEET ===")
             for line in file:
                 print(line.strip())
+        return True
     else:
+        print(f"Error: Character file '{character}' not found.")
         return None
     pass
 
