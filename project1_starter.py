@@ -76,7 +76,10 @@ def save_character(character, filename):
     # Remember to handle file errors gracefully
     with open(filename, 'w') as file:
         for key, value in character.items():
-            file.write(f"{key}: {value}\n")
+            if key == "name":
+                file.write(f"Character {key.title()}: {value}\n")
+                continue
+            file.write(f"{key.title()}: {value}\n")
     return True
     pass
 
