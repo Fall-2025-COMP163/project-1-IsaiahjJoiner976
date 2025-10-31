@@ -1,7 +1,7 @@
 """
 COMP 163 - Project 1: Character Creator & Saving/Loading
-Name: [Your Name Here]
-Date: [Date]
+Name: Isaiah Joiner
+Date: 10/31/2025
 
 AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
@@ -105,10 +105,10 @@ def save_character(character, filename):
     directory_parts = os.path.split(filename)
     directory = directory_parts[0]
 
-    if directory != "":
-        if not os.path.exists(directory):
-            print(f"ERROR: Directory '{directory}' does not exist. File cannot be saved.")
-            return False
+    
+    if directory and not os.path.exists(directory):
+        print(f"ERROR: Directory '{directory}' does not exist. File cannot be saved.")
+        return False
 
     if directory == "":
         directory = "."
@@ -173,16 +173,16 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
-    character = str(character)
-    if os.path.exists(character):
-        with open(character, "r") as file:
-            print("=== CHARACTER SHEET ===")
-            for line in file:
-                print(line.strip())
-        return True
-    else:
-        print(f"Error: Character file '{character}' not found.")
+    if type(character) is not dict:
+        print("ERROR: Input must be a character dictionary")
         return None
+    print("=== CHARACTER SHEET ===")
+    print_order = ["name", "class", "level", "strength", "magic", "health", "gold"]
+    for key in print_order:
+        if key in character:
+            display_key = "Name" if key == "name" else key.title()
+            print(f"{display_key}: {character[key]}")
+    return None
     pass
 
 def level_up(character):
@@ -210,6 +210,44 @@ def level_up(character):
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Test your functions here!")
+    test_filename = "my_character.txt"
+    
+    print("\n--- 1. Testing Character Creation (Warrior) ---")
+    # Feel free to edit arguments
+    char = create_character("Alex", "Warrior")
+    if char:
+        print("\n--- 2. Testing Display (Initial Stats) ---")
+        display_character(char)
+
+        print("\n--- 3. Testing Level Up (to Level 2) ---")
+        level_up(char)
+        display_character(char)
+
+        print(f"\n--- 4. Testing Save to File: {test_filename} ---")
+        save_success = save_character(char, test_filename)
+        if save_success:
+            print(f"Character was successfully saved to {test_filename}.")
+
+            print("\n--- 5. Testing Load from File ---")
+            loaded = load_character(test_filename)
+            if loaded:
+                print("Character successfully loaded.")
+                print(f"Loaded Name: {loaded['name']}, Loaded Level: {loaded['level']}")
+
+                print("\n--- 6. Testing Display (Loaded Hero) ---")
+                display_character(loaded)
+
+    print("\n--- 7. Testing Invalid Class Creation (Expected Error) ---")
+    bad_char = create_character("Zarg", "Warlock")
+
+    print("\n--- 8. Testing Save to Bad Directory (Expected Failure) ---")
+    bad_save_file = "non_existent_folder/bad_save.txt"
+    bad_save_result = save_character(char, bad_save_file)
+    print(f"Save to bad directory returned: {bad_save_result}")
+
+    print("\n--- 9. Testing Load Non-Existent File (Expected Failure) ---")
+    bad_load_result = load_character("missing_file.txt")
+    
     
     # Example usage:
     # char = create_character("TestHero", "Warrior")
