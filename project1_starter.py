@@ -108,7 +108,7 @@ def save_character(character, filename):
                 file.write(f"Character {key.title()}: {value}\n")
                 continue
             file.write(f"{key.title()}: {value}\n")
-    return True
+        return True              
     pass
 
 def load_character(filename):
