@@ -102,6 +102,16 @@ def save_character(character, filename):
     """
     # TODO: Implement this function
     # Remember to handle file errors gracefully
+    directory_parts = os.path.split(filename)
+    directory = directory_parts[0]
+
+    if directory != "":
+        if not os.path.exists(directory):
+            print(f"ERROR: Directory '{directory}' does not exist. File cannot be saved.")
+            return False
+
+    if directory == "":
+        directory = "."
     with open(filename, 'w') as file:
         for key, value in character.items():
             if key == "name":
