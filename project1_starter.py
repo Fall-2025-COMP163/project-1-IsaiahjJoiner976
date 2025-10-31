@@ -133,9 +133,10 @@ def load_character(filename):
         with open(filename, 'r') as file:
             for line in file:
                 clean_line = line.strip()
+                # This is a check to make sure clean_line isn't just an empty string. Also from Google Gemini
                 if not clean_line:
                     continue
-
+                # This is from Google Gemini. It's used to separate the key from the value and putting them into two separate variables
                 key_part, value_str = clean_line.split(':', 1)
 
                 key_part = key_part.strip()
@@ -173,13 +174,15 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
-    if type(character) is not dict:
+    # Code from gemini to be certain the function is receiving a dictionary.
+    if type(character) is not dict: # Sage said that I could use the type function
         print("ERROR: Input must be a character dictionary")
         return None
     print("=== CHARACTER SHEET ===")
     print_order = ["name", "class", "level", "strength", "magic", "health", "gold"]
     for key in print_order:
         if key in character:
+            # This is a check for the key "Character Name" making sure it doesn't cause any errors and just sets it to "Name"
             display_key = "Name" if key == "name" else key.title()
             print(f"{display_key}: {character[key]}")
     return None
