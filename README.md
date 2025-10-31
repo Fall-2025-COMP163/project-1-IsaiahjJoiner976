@@ -20,80 +20,20 @@ display_character(character) - Display character info
 
 level_up(character) - Increase character level
 
-# 🎭 Character Classes
-Implement these character classes with unique stat distributions:
+# Game Concept
+A/your character awakes and roams the world. Having lost your memory you are to traverse the world to find a purpose. Whether that is to become a hero, villain, or a simple farmer is up to you.
 
+# Design Choices
+I added modifiers to stat progression as they level up based on the base stats of the character. If the stat starts high that state will grow the largest out of a medium and low base stat. 
+Example:
+A warrior will naturally level up their strength and health stats faster than a mage who has low strength and health.
 
-Warrior: High strength, low magic, high health
+# Bonus Creative Features
+Besides the modifications based on the character class I didn't add any very creative features.
 
-Mage: Low strength, high magic, medium health
+# AI Usage
+I used AI to help explain the errors I was running into and with understanding where I should start in forming the functions. There are a few steps where I did use code from Google Gemini. I have added comments above said code. 
 
-Rogue: Medium strength, medium magic, low health
-
-Cleric: Medium strength, high magic, high health
-
-# 📁 Required File Format
-Your save_character() function must create files in this exact format:
-
-Character Name: [name]
-
-Class: [class]
-
-Level: [level]
-
-Strength: [strength]
-
-Magic: [magic]
-
-Health: [health]
-
-Gold: [gold]
-
-
-# Run specific test file
-python -m pytest tests/test_character_creation.py -v
-
-# Test your main program
-python project1_starter.py
-
-GitHub Testing:
-
-After pushing your code, check the Actions tab to see automated test results:
-
-✅ Green checkmarks = tests passed
-❌ Red X's = tests failed (click to see details)
-
-# ⚠️ Important Notes
-Protected Files
-
-DO NOT MODIFY files in the tests/ directory
-
-DO NOT MODIFY files in the .github/ directory
-
-Modifying protected files will result in automatic academic integrity violation
-
-# AI Usage Policy
-
-✅ Allowed: AI assistance for implementation, debugging, learning
-
-📝 Required: Document AI usage in code comments
-
-🎯 Must be able to explain: Every line of code during interview
-
-# 📝 Submission Checklist
-
- All required functions implemented
- 
- Code passes all automated tests
- 
- README updated with your documentation
- 
- Interview scheduled and completed
- 
- AI usage documented in code comments
-
-# 🏆 Grading
-
-Implementation (70%): Function correctness, file operations, error handling
-
-Interview (30%): Code explanation and live coding challenge
+# How to Run
+Upon being saved as a Python file open it into an IDE and use the if__name__=="__main__": block.
+You can then go through and call the functions creating, saving, and loading a character while also calculating the stats as your character levels up. 
