@@ -42,19 +42,47 @@ def calculate_stats(character_class, level):
     """
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
-    Warrior_char = (20, 3, 60)
-    Mage_char = (8, 21, 20)
-    Rogue_char = (11, 12, 20)
-    Cleric_char = (11, 19, 40)
-    if character_class == "Warrior":
-        return Warrior_char
-    elif character_class == "Mage":
-        return Mage_char
-    elif character_class == "Rogue":
-        return Rogue_char
-    elif character_class == "Cleric":
-        return Cleric_char
+    base_stats = {
+        "Warrior": (20, 3, 60),
+        "Mage": (8, 21, 20),
+        "Rogue": (11, 12, 20),
+        "Cleric": (11, 19, 40),
+    }
+    if character_class in base_stats:
+        base_str, base_mag, base_hp = base_stats[character_class]
     else:
+        print("ERROR: Invalid Class")
+        return None
+    
+    stat_per_level_mod = (level - 1) * 5
+    stat_per_level = (level - 1) * 3
+    stat_per_level_low = (level - 1) * 2
+    
+    if level >= 1:
+        if character_class == "Warrior":
+            final_str = base_str + stat_per_level_mod
+            final_mag = base_mag + stat_per_level_low
+            final_hp = base_hp + stat_per_level_mod
+            return (final_str, final_mag, final_hp)
+        elif character_class == "Mage":
+            final_str = base_str + stat_per_level_low
+            final_mag = base_mag + stat_per_level_mod
+            final_hp = base_hp + stat_per_level
+            return (final_str, final_mag, final_hp)
+        elif character_class == "Rogue":
+            final_str = base_str + stat_per_level
+            final_mag = base_mag + stat_per_level
+            final_hp = base_hp + stat_per_level_low
+            return (final_str, final_mag, final_hp)
+        elif character_class == "Cleric":
+            final_str = base_str + stat_per_level
+            final_mag = base_mag + stat_per_level_mod
+            final_hp = base_hp + stat_per_level_mod
+            return (final_str, final_mag, final_hp)
+        else:
+            return None
+    else:
+        print("ERROR: Invalid level")
         return None
     pass
 
@@ -115,7 +143,7 @@ def load_character(filename):
                 load_char_data[key] = value
         return load_char_data
     else:
-        print(f"File '{filename} not found.")
+        print(f"File '{filename}' not found.")
         return None
     pass
 
@@ -155,6 +183,17 @@ def level_up(character):
     """
     # TODO: Implement this function
     # Remember to recalculate stats for the new level
+    current_class = character["class"]
+    new_level = character["level"] + 1
+    new_stats = calculate_stats(current_class, new_level)
+    if new_stats == None:
+        print(f"ERROR: Invalid Class or level calculation")
+        return None
+    character["level"] = new_level
+    character["strength"] = new_stats[0]
+    character["magic"] = new_stats[1]
+    character["health"] = new_stats[2]
+    return None
     pass
 
 # Main program area (optional - for testing your functions)
